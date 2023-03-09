@@ -3,10 +3,13 @@ class HomeWarkTwo  {
     static String firstStr = "hello";
     static String secondStr = "hello";
 
+
+    // 1
     public static void twoStr(String one, String two) {
         System.out.println(firstStr.equals(secondStr));
     }
 
+    // 2
     public static void reverseStr(String strOne, String strTwo) {
         String first = new StringBuilder(strOne).reverse().toString();
         String second = new StringBuilder(strTwo).reverse().toString();
@@ -17,6 +20,7 @@ class HomeWarkTwo  {
         }
     }
 
+    // 3
     public static String reverseRekurse(String str) {
         String rightStr;
         String leftStr;
@@ -30,13 +34,21 @@ class HomeWarkTwo  {
         return reverseRekurse(rightStr) + reverseRekurse(leftStr);
     }
 
+    // 6
     public static String replaceToStr(StringBuilder str) {
+        long start = System.nanoTime();
         String res = str.toString().replace("=", "равно");
         System.out.println(res);
+        long finish = System.nanoTime();
+        long elapsed = finish - start;
+        System.out.println("------------------------------");
+        System.out.println(elapsed);
         return res;
     }
 
+    // 5 
     public static String insertIndexStr(StringBuilder str) {
+        long start = System.nanoTime();
         StringBuilder tmp = new StringBuilder();
         for (int index = 0; index < str.length(); index++) {
             if (str.charAt(index) == '=') {
@@ -47,9 +59,27 @@ class HomeWarkTwo  {
         }
         String res = tmp.toString();
         System.out.println(res);
+        long finish = System.nanoTime();
+        long elapsed = finish - start;
+        System.out.println("------------------------------");
+        System.out.println(elapsed);
         return res;
     }
 
+    // 7
+    static StringBuilder bigStringSymbol = new StringBuilder();
+
+    public static StringBuilder createStr() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < 10_000; i++) {
+            result.append("= ");
+        }
+       // System.out.println(result);
+        return result;
+    }
+
+
+    // 4
     public static StringBuilder helpPrintResult(Integer res, int numOne, int numTwo, String signInput ) {
         StringBuilder result = new StringBuilder();
         result = result.append(String.valueOf(numOne))
@@ -65,6 +95,7 @@ class HomeWarkTwo  {
         
     }
 
+    // 4
     public static void convertIntStringBuolder(int a, int b, String sign) {
         StringBuilder result = new StringBuilder();
         switch (sign) {
@@ -88,8 +119,13 @@ class HomeWarkTwo  {
     }
 
     public static void main(String[] args) {
-        reverseStr(firstStr, secondStr);
-        reverseRekurse("firstStr");
-        convertIntStringBuolder(3, 56, "*");
+        // reverseStr(firstStr, secondStr);
+        // reverseRekurse("firstStr");
+        // convertIntStringBuolder(3, 56, "*");
+
+        bigStringSymbol = createStr();
+        
+        insertIndexStr(bigStringSymbol);
+        replaceToStr(bigStringSymbol);
     }
 }
